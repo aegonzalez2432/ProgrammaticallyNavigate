@@ -9,10 +9,16 @@ import UIKit
 
 class ProgrammaticTableViewCell: UITableViewCell {
     
+    var buttonIsPressed = false
+    
+    //make a stored value, pass from viewCONTROller to property here
+    
+    var updateStats : String = "Stats"
+    
     lazy var progImageView: UIImageView = {
         let imageView = UIImageView(frame: .zero)
         imageView.translatesAutoresizingMaskIntoConstraints = false
-        imageView.backgroundColor = .systemGreen
+        imageView.backgroundColor = .white
         imageView.contentMode = .scaleAspectFit
         imageView.image = UIImage(named: "Michael Jordan")
         
@@ -102,8 +108,10 @@ class ProgrammaticTableViewCell: UITableViewCell {
     @objc
     func buttonPressed() {
         print("button pressed")
-        let frame = self.button.frame
-        self.stats.text =  "Nothin"
+        buttonIsPressed = true
+        self.stats.text =  updateStats
     }
+
+    
 
 }

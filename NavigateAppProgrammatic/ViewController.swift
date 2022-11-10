@@ -42,13 +42,11 @@ class ViewController: UIViewController {
         table.translatesAutoresizingMaskIntoConstraints = false
         table.backgroundColor = .systemBlue
         table.dataSource = self
-        //register cell
-        //table.register(UITableViewCell.self, forCellReuseIdentifier: "SampleCell")
+
         let navController = NavigationDetailViewController()
         
         table.register(ProgrammaticTableViewCell.self, forCellReuseIdentifier: "ProgCell")
-        //table.register(UITableViewCell.self, forCellReuseIdentifier: "NavigationDetailViewController")
-        //table.register(ProgrammaticTableViewCell.self, forCellReuseIdentifier: "NavigationDetailViewController")
+
         table.delegate = self
         
         self.view.addSubview(table)
@@ -57,24 +55,9 @@ class ViewController: UIViewController {
         table.leadingAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.leadingAnchor, constant: 8).isActive = true
         table.trailingAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.trailingAnchor, constant: -8).isActive = true
         
-
-        
-        //create instance of NavigationDetailViewController
-        
-
-        
-        
-//        detailVC.nameString = self.about[0]
-//        self.navigationController?.pushViewController(detailVC, animated: true)
-        
-        
-//        table.register(navController, forCellReuseIdentifier: "NavigationDetailViewController")
-//        table.delegate = self
-        
         self.tableView = table
     }
     
-
 
 
 }
@@ -92,7 +75,8 @@ extension ViewController: UITableViewDataSource {
         cell.progImageView.image = UIImage(named: "\(self.data[indexPath.row])")
         cell.progLabel.text = self.data[indexPath.row]
         cell.progressBar.setProgress(Float((self.playerRating[indexPath.row])/100), animated: false)
-        
+        cell.updateStats = "PPG: \(String(ppg[indexPath.row]))"
+
         return cell
     }
     
@@ -105,7 +89,8 @@ extension ViewController: UITableViewDelegate {
         let navController = NavigationDetailViewController()
         navController.infoLabel.text = about[indexPath.row]
         self.navigationController?.pushViewController(navController, animated: true)
-        //navigationController, ViewCOntroller
+        
+
         
 //        self.sendData = about[indexPath.row]
         print("The selected path is \(indexPath)")
